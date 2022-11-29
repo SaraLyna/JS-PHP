@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Horloge</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="" />
+        <!--<script src="checkbox.js"></script>-->
+        <style>
+            form input[name='bg']:disabled{
+                color : lightgrey;
+                opacity : 0.2;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Formulaire Horloge</h1>
+        </header>
+        <form action="horloge.php">
+        <fieldset id="horloge">
+            <legend>Horloge</legend>
+            <label for="hours">Hours   :</label>
+            <input type="number" name="hours" min="0" max="23" placeholder="00" step="1"/>
+
+            <label for="minutes">Minutes :</label>
+            <input type="number" name="minutes" min="0" max="59" placeholder="00" step="1"/>
+
+            <label for="seconds">Seconds :</label>
+            <input type="number" name="seconds" min="0" max="59" placeholder="00" step="1"/>
+
+
+            <label for="hands">Couleur Aiguille :</label>
+            <input type="color" name="hands" id="hands" />
+
+            <label for="bg">Couleur de l'horloge:</label>
+            <input type="color" name="bg" id="bg"  />
+
+
+
+            <input type="checkbox" id="bg_default" name="bg_default" checked>
+            <label for="bg_default">Default (Transparent)</label><br/>
+
+            
+            <label for="markers_default">Default (Grey)</label>
+            <input type="checkbox" id="markers_default" name="markers_default" checked>
+            
+
+            <label for="markers">Couleur des Contours de l'horloge:</label>
+            <input type="color" name="markers" id="markers" />
+
+            <div>
+                <button type="submit" name="valid" value = "ok"> Valider </button>
+    
+              </div>
+
+          </fieldset>
+        </form>
+      </body>
+
+    
+</html>
