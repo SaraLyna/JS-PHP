@@ -20,26 +20,21 @@ require_once("lib/fonctionsLivre.php");    // inclusion de fichier
 function testReadBook($fileName){
     $dl = new FileBookReader($fileName);
     $book = $dl->readBook();
-    echo "Résultat pour $fileName \n";
+    echo "Resultat pour $fileName \n";
     print_r($book);
 }
+function testElementBuilder($elementType,$content,$elementClass=""){
+    $res=elementBuilder($elementType,$content,$elementClass);
+    echo "Resultat pour $elementType, $content,$elementClass  \n";
+    print_r($res);
+}
+//var_dump(elementBuilder('h2','La marque du diable','titre'));
+//var_dump(authorsToHTML('aaa - bbb'));
 
 /*
  * Lancement des tests :
  */
-// une description corretce de livre suivie de la fin de fichier
-// doit produire un résultat correct
-testReadBook('data/exempleLivre.txt');
-
-// une description de livre,(avec des espaces inutiles) suivie d'une ligne vide puis d'un autre texte à ignorer
-// doit produire un résultat correct
-testReadBook('data/exempleLivre2.txt');
-
-// une description de livre incorrecte (manque ':' en ligne 2)
-// doit déclencher une exception
-testReadBook('data/exempleLivreErrone.txt');
-
-
+echo "lancement des tests de la fonction elementBuilder : \n";
  echo("*********Fonction elementBuilder :************** \n");
  echo elementBuilder('p','bla bla')."\n";
  echo elementBuilder('h2','La marque du diable','titre')."\n\n";
@@ -62,6 +57,20 @@ testReadBook('data/exempleLivreErrone.txt');
  echo "*********La fonction librayToHTML : *********\n\n";
  $read = new FileBookReader('data/livres.txt');
  echo libraryToHTML($read)."\n\n";
+
+ 
+// une description corretce de livre suivie de la fin de fichier
+// doit produire un résultat correct
+testReadBook('data/exempleLivre.txt');
+
+// une description de livre,(avec des espaces inutiles) suivie d'une ligne vide puis d'un autre texte à ignorer
+// doit produire un résultat correct
+testReadBook('data/exempleLivre2.txt');
+
+// une description de livre incorrecte (manque ':' en ligne 2)
+// doit déclencher une exception
+testReadBook('data/exempleLivreErrone.txt');
+
 
 
 /**

@@ -1,0 +1,50 @@
+body
+{ font-family: fantasy;
+  background-color:white;
+  text-align:center;
+  margin: 0 auto;
+}
+header, body>div
+{
+  background-color:  rgba(128,255,128,0.3);
+  width:90%;
+  border:3px white solid;
+  display: inline-block;
+  margin: 0 auto;
+  text-align: left;
+  padding: 10px;
+}
+header{
+  font-size: 20px;
+  height:36px;
+  padding-top: 16px;
+}
+header>div 
+{
+  border: 1px solid white; 
+  display :inline-block;
+  font-size: 14px;
+  padding:3px;
+  font-weight: lighter;}
+
+img
+{
+  height:290px;
+  width:175px;
+  padding-top: 5px;
+}
+.couverture
+{
+  border: 2px solid whitesmoke; 
+  background: gainsboro;
+  margin:auto;
+  padding:2px 10px;
+  box-shadow: whitesmoke;
+  display :block;
+  text-align: center;
+}
+
+.titre
+{font-weight:bold;
+ font-size: 14px;
+}

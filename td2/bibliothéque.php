@@ -11,5 +11,5 @@
  $bookHTML = libraryToHTML($reader);
  
  // inclusion de la page template :
- require('views/Bibliothequevue.php');
+ require('views/bibliothequeview.php');
 ?>

@@ -8,25 +8,25 @@ class FileBookReader implements BookReader{
 	}
 	
 
-	
 	function readBook() : ?array {
-		$line = fgets($this->file);
-			 $result = array();
-			 while ($line !== FALSE && trim($line) != ""){
-					 $pos = strpos($line,":");
-					 if ($pos === FALSE){
-							 throw new Exception("Absence de : ");
-					 }
-					 $name = trim(substr($line,0,$pos));
-					 $value = trim(substr($line, $pos+1));
-					 $result[$name] = $value;
-					 $line = fgets($this->file);
-					 
-			 }
-			 return $result;
+		$line=fgets($this->file);
+		   $res=array();
+			 while ($line !== FALSE && trim($line)!=""){
+				 $pos=strpos($line,":");
+				 if($pos===FALSE){
+					 throw new exception(" n'a pas de : ");
+			   }
+				 $name=trim(substr($line,0,$pos));
+				 $value=trim(substr($line,$pos+1));
+				 $res[$name]=$value;
+				 $line=fgets($this->file);
+	     }
+			 return $res;
 
-
+	
 	}
+	
+	
 }
 
 ?>
