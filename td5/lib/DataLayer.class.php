@@ -3,9 +3,9 @@ class DataLayer {
 	// private ?PDO $connexion = NULL; // le typage des attributs est valide uniquement pour PHP>=7.4
 
 	private  $connexion = NULL; // connexion de type PDO   compat PHP<=7.3
-	
+
 	/**
-	 * @param $DSNFileName : file containing DSN 
+	 * @param $DSNFileName : file containing DSN
 	 */
 	function __construct(string $DSNFileName){
 		$dsn = "uri:$DSNFileName";
@@ -16,12 +16,17 @@ class DataLayer {
 		// réglage d'un schéma par défaut :
 		$this->connexion->query('set search_path=authent');
 	}
-    
-    
+
+
     function authentificationProvisoire(string $login, string $password) : ?Identite{
        // à compléter
+			 if (){
+
+			 }else{
+				 return NULL;
+			 }
     }
-    
+
     function authentification(string $login, string $password) : ?Identite{ // version password hash
             // à compléter
     }
@@ -36,6 +41,6 @@ EOD;
                // à compléter
 
     }
-	
+
 }
 ?>
