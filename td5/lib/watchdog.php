@@ -5,20 +5,20 @@
    *  le script global est arrêté définitivment (exit)
    *
    */
-  
-  
+
+
  //session_save_path(__DIR__);
  session_name('ma_session');
  session_start();
- 
+
  /**
   * test si le script s'exécute dans une session où l'utilisateur s'est déjà authentifié
   * se fonde sur le témoin d'authentification : $_SESSION['ident']
   */
  function alreadyLogged() : bool {
-   return  isset($_SESSION['ident']); 
+   return  isset($_SESSION['ident']);
  }
- 
+
  /**
   * tente de réaliser une nouvelle connexion
   * - si des identifiants valides ont été fournis dans $_POST, la connexion est réussie
@@ -29,20 +29,22 @@
  function tryConnect(callable $authent_function) : bool {
    if ( !isset($_POST['login']) || !isset($_POST['password']) ) // pas de login ou pas de password fourni => échec
      return FALSE;
-    
+
    $person = $authent_function($_POST['login'],$_POST['password']);
    if ($person === NULL) {// authentification en échec
+     $_SESSION['echec']= TRUE;
      return FALSE;
    }
    // authentification réussie
    $_SESSION['ident'] = $person;
+   unset($_SESSION['echec']);
    return TRUE;
  }
- 
- 
- 
+
+
+
  $my_authent = [$data,"authentificationProvisoire"];  // méthode d'authentification à utiliser
- 
+
  if (! alreadyLogged() && ! tryConnect($my_authent)){ // pas déja loggé et pas de connexion correcte
      require('views/pageLogin.php');
      exit; // Important !

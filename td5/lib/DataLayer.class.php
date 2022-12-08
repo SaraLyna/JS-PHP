@@ -19,9 +19,19 @@ class DataLayer {
 
 
     function authentificationProvisoire(string $login, string $password) : ?Identite{
-       // à compléter
-			 if (){
+       $sql= <<<EOD
+			 select login,nom,prenom
+			 from users
+			 where login = :login and password = :password
+EOD;
+			 $stmt= $this->connexion->prepare($sql);
+			 $stmt->bindValue(':login',$login);
+			 $stmt->bindValue(':password',$password);
+			 $stmt->execute();
+			 $res = $stmt->fetch();
 
+			 if ($res){
+				 		return new Identite($res['login'],$res['nom'],$res['prenom']);
 			 }else{
 				 return NULL;
 			 }
@@ -38,7 +48,15 @@ class DataLayer {
         insert into "users" (login, password, nom, prenom)
         values (:login, :password, :nom, :prenom)
 EOD;
-               // à compléter
+          try{
+						$password=password_hash($password,CRYPT_BLOWFISH);
+						$stmt= $this->connexion->prepare($sql);
+					  $stmt->execute([":login"=>$login,":password"=>$password,":nom"=>$nom,":prenom"=>$prenom]);
+						return TRUE;
+					}catch(PDOException $e){
+						echo $e;
+						return FALSE;
+					}
 
     }
 
