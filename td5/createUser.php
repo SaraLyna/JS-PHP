@@ -6,6 +6,13 @@ spl_autoload_register(function ($className) {
 try {
   require('lib/initDataLayer.php');
   require('lib/fonctions_parms.php');
+   
+  $login=checkUnsigned('login');
+  $password=checkUnsigned('password');
+  $nom=checkUnsigned('nom');
+  $prenom=checkUnsigned('prenom');
+
+
   
    // à compléter
    

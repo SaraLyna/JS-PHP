@@ -43,7 +43,7 @@
 
 
 
- $my_authent = [$data,"authentificationProvisoire"];  // méthode d'authentification à utiliser
+ $my_authent = [$data,"authentification"];  // méthode d'authentification à utiliser
 
  if (! alreadyLogged() && ! tryConnect($my_authent)){ // pas déja loggé et pas de connexion correcte
      require('views/pageLogin.php');

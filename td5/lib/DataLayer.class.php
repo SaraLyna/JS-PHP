@@ -39,6 +39,27 @@ EOD;
 
     function authentification(string $login, string $password) : ?Identite{ // version password hash
             // à compléter
+			$sql= <<<EOD
+			select login,nom,prenom,password
+			from users
+			where login = :login
+EOD;
+			$stmt= $this->connexion->prepare($sql);
+			$stmt->bindValue(':login',$login);
+			$stmt->execute();
+			$res = $stmt->fetch();
+
+			if($res==[]){
+				return null;
+
+			}else{
+				if(crypt($password,$res["password"])==$res["password"]){
+					return new Identite($login,$res["nom"],$res["prenom"]);
+			
+				}
+	
+
+			}
     }
     /**
     * @return bool indiquant si l'ajout a été réalisé
@@ -48,17 +69,20 @@ EOD;
         insert into "users" (login, password, nom, prenom)
         values (:login, :password, :nom, :prenom)
 EOD;
-          try{
-						$password=password_hash($password,CRYPT_BLOWFISH);
-						$stmt= $this->connexion->prepare($sql);
-					  $stmt->execute([":login"=>$login,":password"=>$password,":nom"=>$nom,":prenom"=>$prenom]);
-						return TRUE;
-					}catch(PDOException $e){
-						echo $e;
-						return FALSE;
-					}
-
-    }
+				try{
+				$stmt = $this->connexion->prepare($sql);
+				$stmt->bindValue("login",$login);
+				$stmt->bindValue(':password',password_hash($password,CRYPT_BLOWFISH));
+				$stmt->bindValue(':nom',$nom);
+				$stmt->bindValue(':prenom',$prenom);
+				$stmt->execute();
+				return $stmt->rowCount()==1;
+				}
+				catch (PDOException $e) {
+					return FALSE;
+				}
+		}
 
 }
+
 ?>
