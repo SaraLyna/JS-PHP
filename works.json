@@ -21,7 +21,11 @@
     {
      "work_name":"td5" ,
      "base_url":"http://webtp.fil.univ-lille.fr/~melissa.atmani.etu/td5"
-   },
+    },
+    {
+     "work_name":"td6" ,
+     "base_url":"http://webtp.fil.univ-lille.fr/~saralyna.ouyahia.etu/td6"
+    }
 
 
 ]
