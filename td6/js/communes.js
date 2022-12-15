@@ -36,26 +36,54 @@ function makeOptions(tab){
 
 function sendForm(ev){ // form event listener
   ev.preventDefault();
-  let args = new FormData (this);
+  let args = new FormData(this);
   let url = 'services/getCommunes.php?'+new URLSearchParams(args);
-  fetchFromJson(url).then(processAnswer).then(makeCommunesItems);
-
+  fetchFromJson(url)
+  .then(processAnswer)
+  .then(makeCommunesItems);
 }
 
 
 function makeCommunesItems(tab){
-  var liste= document.getElementById('liste_communes')listes.style.display="block";
-  liste.textContent="";
-  for(let commune)
+  var list = document.getElementById('liste_communes')
+  list.style.display="block";
+  list.textContent="";
+  for (let commune of tab){
+      let option = document.createElement('li');
+      option.textContent = commune.nom;
+      for (let k of ['min_lat','min_lon','max_lat','max_lon']){
+          option.dataset[k] = commune[k];
+    option.addEventListener("mouseover", function(event){ //question facultative
+    centerMapElt(event.target);
+    });
+    option.addEventListener("click", function(event){
+    fetchCommune(commune.insee);
+    });
+      list.appendChild(option)
 
+      }
+    }
 }
 
 function fetchCommune(){
-
+  let url = 'services/getDetails.php?insee='+param;
+  fetchFromJson(url)
+  .then(processAnswer)
+  .then(displayCommune);
 }
 
 function displayCommune(commune){
+  var list = document.getElementById('details')
+  list.textContent=""
+  createDetailMap(commune)
+  for (let k of ['insee','nom','nom_terr','lat','lon','surface','perimetre','pop2016']){
+    param = document.createElement('p');
+    param.textContent += k + " : " + commune[k]+"\n";
+
+    list.append(param)
+  }
 }
+
 
 /**
  * Recentre la carte principale autour d'une zone rectangulaire
