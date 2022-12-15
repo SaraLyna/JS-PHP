@@ -51,7 +51,7 @@ function makeCommunesItems(tab){
   for (let commune of tab){
       let option = document.createElement('li');
       option.textContent = commune.nom;
-      for (let k of ['min_lat','min_lon','max_lat','max_lon']){
+      for (let k of ['insee','lat','lon','min_lat','min_lon','max_lat','max_lon']){
           option.dataset[k] = commune[k];
     option.addEventListener("mouseover", function(event){ //question facultative
     centerMapElt(event.target);
