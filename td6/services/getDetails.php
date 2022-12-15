@@ -5,7 +5,7 @@ require_once('lib/initDataLayer.php');
 require_once('lib/fonctions_parms.php');
 
 try{
-  $insee=checkString('insee',NULL,FALSE);
+  $insee=checkString('insee',NULL,TRUE);
   $details=$data->getDetails($insee);
   produceResult($details);
 }
