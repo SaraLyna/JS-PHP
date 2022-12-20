@@ -53,7 +53,7 @@ function makeCommunesItems(tab){
       option.textContent = commune.nom;
       for (let k of ['insee','lat','lon','min_lat','min_lon','max_lat','max_lon']){
           option.dataset[k] = commune[k];
-    option.addEventListener('mouseover', functions(event){ //question facultative
+    option.addEventListener('mouseover', functions(){ //question facultative
     centerMapElt(event.target);
     });
     option.addEventListener('click',fetchCommune);
