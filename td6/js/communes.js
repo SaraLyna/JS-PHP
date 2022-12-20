@@ -8,9 +8,9 @@ function initForm(){
   document.forms.form_communes.addEventListener("submit", sendForm);
 
   // décommenter pour le recentrage de la carte :
-  //document.forms.form_communes.territoire.addEventListener("change",function(){
-  //  centerMapElt(this[this.selectedIndex]);
-  //});
+  document.forms.form_communes.territoire.addEventListener("change",function(){
+    centerMapElt(this[this.selectedIndex]);
+  });
 }
 
 function processAnswer(answer){
@@ -53,13 +53,11 @@ function makeCommunesItems(tab){
       option.textContent = commune.nom;
       for (let k of ['insee','lat','lon','min_lat','min_lon','max_lat','max_lon']){
           option.dataset[k] = commune[k];
-    option.addEventListener("mouseover", function(event){ //question facultative
+    option.addEventListener('mouseover', functions(event){ //question facultative
     centerMapElt(event.target);
     });
-    option.addEventListener("click", function(event){
-    fetchCommune(commune.insee);
-    });
-      list.appendChild(option)
+    option.addEventListener('click',fetchCommune);
+      list.appendChild(option);
 
       }
     }
